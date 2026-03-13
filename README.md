@@ -17,7 +17,15 @@ npm install
 npm run dev
 ```
 
-Відкрити [http://localhost:3000](http://localhost:3000).
+Відкрити [http://localhost:3000/portfolio_smm](http://localhost:3000/portfolio_smm) (basePath для GitHub Pages).
+
+## Деплой на GitHub Pages
+
+1. В репо **Settings → Pages → Build and deployment**: Source = **GitHub Actions**
+2. Push у `main` — workflow автоматично зібере й задеплоїть
+3. Сайт буде на: **https://vitaliyva.github.io/portfolio_smm/**
+
+> Для локальної перевірки збірки: `npm run build` → файли в `out/`
 
 ## Структура
 

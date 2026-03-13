@@ -6,10 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const splitIntoChars = (text: string) => text.split("");
+const splitIntoChars = (text: unknown): string[] =>
+  (typeof text === "string" ? text : "").split("");
 
 export type AnimatedTextProps = {
-  children: string;
+  children?: string | null;
   as?: "span" | "p" | "h1" | "h2" | "h3";
   className?: string;
   triggerEl?: HTMLElement | null;
