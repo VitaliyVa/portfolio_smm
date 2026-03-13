@@ -5,13 +5,14 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "@/components/AnimatedText";
+import { assetUrl } from "@/lib/paths";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const sites = [
-  { src: "/assets/sites/site1.jpg", title: "Сайт 1", tag: "Лендинг" },
-  { src: "/assets/sites/site2.jpg", title: "Сайт 2", tag: "Корпоративний" },
-  { src: "/assets/sites/site3.jpg", title: "Сайт 3", tag: "E-commerce" },
+  { src: assetUrl("/assets/sites/site1.jpg"), title: "Сайт 1", tag: "Лендинг" },
+  { src: assetUrl("/assets/sites/site2.jpg"), title: "Сайт 2", tag: "Корпоративний" },
+  { src: assetUrl("/assets/sites/site3.jpg"), title: "Сайт 3", tag: "E-commerce" },
 ];
 
 export default function PortfolioSitesSection() {

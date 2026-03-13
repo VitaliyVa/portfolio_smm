@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { assetUrl } from "@/lib/paths";
 
 const ScrollyVideo = dynamic(
   () =>
@@ -17,7 +18,7 @@ const ScrollyVideo = dynamic(
   }
 );
 
-const VIDEO_SRC = "/assets/spiral.webm";
+const VIDEO_SRC = assetUrl("/assets/spiral.webm");
 
 /** Поріг px/ms — вище = швидкий скрол, збільшуємо transitionSpeed */
 const FAST_SCROLL_THRESHOLD = 2;

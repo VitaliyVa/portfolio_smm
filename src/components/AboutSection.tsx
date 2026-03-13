@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
+import { assetUrl } from "@/lib/paths";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "@/components/AnimatedText";
@@ -50,7 +51,7 @@ export default function AboutSection() {
           >
             <div className="relative h-48 w-48 overflow-hidden rounded-full border-2 border-white/20 bg-black/40 backdrop-blur-sm">
               <Image
-                src="/assets/me.jpg"
+                src={assetUrl("/assets/me.jpg")}
                 alt="Автор портфоліо"
                 fill
                 className="object-cover"

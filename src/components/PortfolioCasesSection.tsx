@@ -5,16 +5,17 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "@/components/AnimatedText";
+import { assetUrl } from "@/lib/paths";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const casesList = [
-  { src: "/assets/cases/case1.jpg", title: "Кейс 1", desc: "Опис проєкту та результатів" },
-  { src: "/assets/cases/case2.jpg", title: "Кейс 2", desc: "Задача, рішення, метрики" },
-  { src: "/assets/cases/case3.jpg", title: "Кейс 3", desc: "Повний цикл від ідеї до запуску" },
-  { src: "/assets/cases/case4.jpg", title: "Кейс 4", desc: "SMM та контент-стратегія" },
-  { src: "/assets/cases/case5.jpg", title: "Кейс 5", desc: "Ребрендинг та новий сайт" },
-  { src: "/assets/cases/case6.jpg", title: "Кейс 6", desc: "Реклама та масштабування" },
+  { src: assetUrl("/assets/cases/case1.jpg"), title: "Кейс 1", desc: "Опис проєкту та результатів" },
+  { src: assetUrl("/assets/cases/case2.jpg"), title: "Кейс 2", desc: "Задача, рішення, метрики" },
+  { src: assetUrl("/assets/cases/case3.jpg"), title: "Кейс 3", desc: "Повний цикл від ідеї до запуску" },
+  { src: assetUrl("/assets/cases/case4.jpg"), title: "Кейс 4", desc: "SMM та контент-стратегія" },
+  { src: assetUrl("/assets/cases/case5.jpg"), title: "Кейс 5", desc: "Ребрендинг та новий сайт" },
+  { src: assetUrl("/assets/cases/case6.jpg"), title: "Кейс 6", desc: "Реклама та масштабування" },
 ];
 
 export default function PortfolioCasesSection() {

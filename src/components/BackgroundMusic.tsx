@@ -2,7 +2,9 @@
 
 import { useRef, useEffect, useCallback, useImperativeHandle, forwardRef } from "react";
 
-const MUSIC_SRC = "/assets/kr-youll-never-know-t.ogg";
+import { assetUrl } from "@/lib/paths";
+
+const MUSIC_SRC = assetUrl("/assets/kr-youll-never-know-t.ogg");
 
 export interface BackgroundMusicHandle {
   play: () => Promise<void>;
