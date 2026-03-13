@@ -21,11 +21,21 @@ npm run dev
 
 ## Деплой на GitHub Pages
 
-1. В репо **Settings → Pages → Build and deployment**: Source = **GitHub Actions**
-2. Push у `main` — workflow автоматично зібере й задеплоїть
-3. Сайт буде на: **https://vitaliyva.github.io/portfolio_smm/**
+### Автоматичне увімкнення (рекомендовано)
 
-> Для локальної перевірки збірки: `npm run build` → файли в `out/`
+1. **Створи PAT**: [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens)
+   - Classic token з scope **repo** (або fine-grained з **Contents** + **Pages** read/write)
+2. **Додай secret**: Репо → **Settings → Secrets and variables → Actions** → New repository secret  
+   - Name: `PAGES_DEPLOY_TOKEN`  
+   - Value: твій PAT
+3. **Push** у `main` — workflow увімкне Pages і задеплоїть
+4. Сайт: **https://vitaliyva.github.io/portfolio_smm/**
+
+### Якщо не працює — ручне увімкнення
+
+Відкрий **https://github.com/VitaliyVa/portfolio_smm/settings/pages** і подивись, чи є опції Source / Build and deployment. Якщо ні — перевір **Settings** (бокова панель) → **Pages** в секції "Code and automation".
+
+> Для локальної перевірки: `npm run build` → файли в `out/`
 
 ## Структура
 
