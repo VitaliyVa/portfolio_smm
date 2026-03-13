@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #a3a3a3;
+  --muted-foreground: #525252;
+  --border: #262626;
+  --card: #141414;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+/* Scrollbar: чорно-біла тематика */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Custom cursor: приховуємо стандартний курсор на всіх елементах (input, a, button) */
+body.custom-cursor-active,
+body.custom-cursor-active *,
+body.custom-cursor-active *::before,
+body.custom-cursor-active *::after {
+  cursor: none !important;
+}
+
+/* Custom cursor: outer circle плавно зменшує радіус */
+@keyframes cursor-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+}
+
+/* Page loader: SVG stroke animation (Tailwind may not output stroke-dashoffset) */
+@keyframes loader-draw {
+  0% {
+    stroke-dashoffset: 276.5;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -276.5;
+  }
+}
+
+/* ScrollyVideo: прибираємо чорні лінії (letterboxing/pillarboxing) */
+[data-scrolly-container] video,
+[data-scrolly-container] canvas {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-position: center !important;
+}
+
+/* Reduce motion for accessibility when preferred */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
