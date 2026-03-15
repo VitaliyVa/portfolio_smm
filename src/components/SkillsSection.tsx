@@ -4,47 +4,25 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "@/components/AnimatedText";
-import {
-  Globe,
-  Share2,
-  PenTool,
-  BarChart3,
-  Image,
-  MessageCircle,
-} from "lucide-react";
+import { Globe, Share2, BarChart3 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   {
     icon: Globe,
-    title: "Сайти під ключ",
-    desc: "Лендинги, корпоративні сайти, інтернет-магазини — від макету до запуску.",
+    title: "Розробка сайтів",
+    desc: "Створюю сайти під ключ на платформах Wix та Weblium, адаптуючи їх під ваші потреби.",
   },
   {
     icon: Share2,
-    title: "SMM",
-    desc: "Ведення соцмереж, контент-план, сторис та пости під ваш бренд.",
-  },
-  {
-    icon: PenTool,
-    title: "Дизайн",
-    desc: "Інтерфейси, баннери, візуал для соцмереж і реклами.",
+    title: "SMM-просування",
+    desc: "Будую стратегії, створюю контент-плани та веду сторінки в Instagram, TikTok та Facebook.",
   },
   {
     icon: BarChart3,
     title: "Реклама",
-    desc: "Налаштування та супровід реклами в Facebook/Instagram та Google.",
-  },
-  {
-    icon: Image,
-    title: "Контент",
-    desc: "Тексти, фото-підборки, прості відео для соцмереж.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Консультації",
-    desc: "Розбір вашого проєкту, план дій, поради по просуванню.",
+    desc: "Налаштовую таргетовану та Google рекламу для залучення цільової аудиторії.",
   },
 ];
 
@@ -90,7 +68,8 @@ export default function SkillsSection() {
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-[var(--muted)]">
           <AnimatedText as="span" className="block">
-            Повний цикл від ідеї до запуску та підтримки
+            Допомагаю бізнесу виходити онлайн та створюю інструменти, які перетворюють
+            глядачів на клієнтів:
           </AnimatedText>
         </p>
         <div

@@ -1,16 +1,21 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Send } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const KOLLECT_ENDPOINT = "https://kollect.app/f/FMlY2pHUUw";
+
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
+  const formElRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -37,6 +42,46 @@ export default function ContactSection() {
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = formElRef.current;
+    if (!form || status === "submitting") return;
+
+    const gotcha = (form.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
+    if (gotcha) {
+      setStatus("success");
+      return;
+    }
+
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const payload = {
+      name: (form.elements.namedItem("name") as HTMLInputElement)?.value ?? "",
+      email: (form.elements.namedItem("email") as HTMLInputElement)?.value ?? "",
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value ?? "",
+    };
+
+    try {
+      const res = await fetch(KOLLECT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
+      if (res.ok && data.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error ?? `Помилка ${res.status}`);
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Помилка мережі. Спробуйте пізніше.");
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -53,10 +98,32 @@ export default function ContactSection() {
           </AnimatedText>
         </p>
         <div ref={formRef} className="mt-12">
+          {status === "success" && (
+            <div className="mb-6 flex items-center gap-3 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-green-400">
+              <CheckCircle className="h-5 w-5 shrink-0" />
+              <p className="text-sm">Повідомлення надіслано. Відповім найближчим часом!</p>
+            </div>
+          )}
+          {status === "error" && (
+            <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-red-400">
+              <AlertCircle className="h-5 w-5 shrink-0" />
+              <p className="text-sm">{errorMsg}</p>
+            </div>
+          )}
           <form
+            ref={formElRef}
             className="flex flex-col gap-6"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
+            {/* Honeypot for spam protection */}
+            <input
+              type="text"
+              name="_gotcha"
+              className="absolute -left-[9999px] opacity-0"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+            />
             <div>
               <label htmlFor="name" className="mb-2 block text-sm text-[var(--muted)]">
                 <AnimatedText as="span">Ім'я</AnimatedText>
@@ -95,10 +162,17 @@ export default function ContactSection() {
             </div>
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-black transition hover:bg-white/90"
+              disabled={status === "submitting"}
+              className="flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              <Send className="h-5 w-5" />
-              <AnimatedText as="span">Надіслати</AnimatedText>
+              {status === "submitting" ? (
+                <span className="text-sm">Відправка...</span>
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  <AnimatedText as="span">Надіслати</AnimatedText>
+                </>
+              )}
             </button>
           </form>
         </div>

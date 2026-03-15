@@ -9,7 +9,7 @@ import HeroVideoSection from "@/components/HeroVideoSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import PortfolioSitesSection from "@/components/PortfolioSitesSection";
-import PortfolioCasesSection from "@/components/PortfolioCasesSection";
+// import PortfolioCasesSection from "@/components/PortfolioCasesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 
@@ -81,7 +81,7 @@ export default function AppWithLoader() {
           <AboutSection />
           <SkillsSection />
           <PortfolioSitesSection />
-          <PortfolioCasesSection />
+          {/* <PortfolioCasesSection /> */}
           <TestimonialsSection />
           <ContactSection />
         </main>

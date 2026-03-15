@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { href: "#about", label: "Про мене" },
   { href: "#skills", label: "Навички" },
   { href: "#portfolio-sites", label: "Сайти" },
-  { href: "#portfolio-cases", label: "Кейси" },
+  // { href: "#portfolio-cases", label: "Кейси" },
   { href: "#testimonials", label: "Відгуки" },
   { href: "#contact", label: "Контакт" },
 ];
